@@ -1,0 +1,33 @@
+:root {
+  /* 🎨 Цвета */
+  --color-primary: #E5E5E5;
+  --color-gradient-accent: linear-gradient(90deg, #48E3D6, #C83ECA);
+  --color-white: #FFFFFF;
+  --color-disabled-text: #C0C0C0;
+  --color-phase-hover: #5B5A5A;
+  --color-text: #6F6F6F;
+
+  /* ✨ Эффекты */
+  --shadow-drop-light: -23px -23px 45px rgba(255, 255, 255, 1);
+  --shadow-drop-dark: 28px 28px 50px rgba(13, 39, 80, 0.16);
+
+  --shadow-inner-black: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  --shadow-inner-gray: inset 0px 0px 3px rgba(41, 48, 47, 0.5);
+
+  /* 🔘 Радиус */
+  --radius-global: 40px;
+
+/*  Шрифты */
+  --font-pfaze-family: 'Inter', sans-serif;
+  --font-pfaze-weight: 600;
+  --font-pfaze-size: 24px;
+  --font-pfaze-line-height: 24px;
+  --font-pfaze-letter-spacing: 0%;
+
+  --font-grotesk-family: 'Space Grotesk', sans-serif;
+  --font-grotesk-weight: 500;
+  --font-grotesk-size: 32px;
+  --font-grotesk-line-height: 40px;
+  --font-grotesk-letter-spacing: 0%;
+}
+

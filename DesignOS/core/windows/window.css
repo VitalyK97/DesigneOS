@@ -1,0 +1,40 @@
+.app-window {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 480px;
+  height: 320px;
+  min-width: 300px;
+  min-height: 300px;
+  background-color: var(--color-primary);
+  border: 2px solid transparent;
+  border-image: var(--color-gradient-accent) 1;
+  border-image-slice: 1;
+  border-radius: var(--radius-global);
+  box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
+  display: flex;
+  flex-direction: column;
+  resize: both;
+  overflow: auto;
+}
+
+.window-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  cursor: move;
+  background: rgba(0,0,0,0.1);
+}
+
+.window-body {
+  flex: 1;
+  padding: 16px;
+}
+
+.window-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}

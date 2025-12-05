@@ -6,11 +6,19 @@
   height: 320px;
   min-width: 300px;
   min-height: 300px;
-  background:
-    linear-gradient(#0000, #0000) padding-box, /* прозрачный фон */
-    var(--color-gradient-accent) border-box;  /* градиент для рамки */
+
+  /* фон внутри */
+  background: var(--color-primary);
+
+  /* градиентная рамка */
   border: 2px solid transparent;
-  border-radius: var(--radius-global);
+  border-radius: var(--radius-global); /* = 40px */
+
+  /* трюк с двумя слоями background */
+  background:
+    linear-gradient(var(--color-primary), var(--color-primary)) padding-box,
+    var(--color-gradient-accent) border-box;
+
   box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
   display: flex;
   flex-direction: column;
@@ -18,7 +26,6 @@
   overflow: auto;
   z-index: 1000;
 }
-
 
 .window-header {
   display: flex;
@@ -60,6 +67,7 @@
   width: 100%;
   height: 100%;
 }
+
 
 
 

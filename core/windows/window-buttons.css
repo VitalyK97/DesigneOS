@@ -1,36 +1,36 @@
-/* Повышаем специфику в контексте окна */
+/* Кнопки в контексте окна + меню настроек */
 .app-window .settings-sidebar .window-menu-btn {
-  display: inline-flex;     /* ширина управляемая, высота по контенту */
-  width: 100%;              /* заполняет контейнер по ширине */
-  align-items: center;      /* вертикально центрирует текст */
+  display: inline-flex;
+  width: 100%;               /* по ширине — заполняют контейнер */
+  align-items: center;       /* по высоте — обнимают текст */
   justify-content: flex-start;
-  padding: 8px 16px;        /* 8px-сетка: высота обнимает текст */
-  gap: 8px;
-
+  padding: 8px 16px;         /* 8px-сетка, компактно по высоте */
   border-radius: 12px;
   box-sizing: border-box;
+
+  white-space: nowrap;       /* текст в одну строку без переносов */
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   font-family: var(--font-pfaze-family);
   font-weight: var(--font-pfaze-weight);
   font-size: var(--font-pfaze-size);
-  line-height: 1.2;         /* без раздутой высоты из глобальных стилей */
+  line-height: 1.2;
   letter-spacing: var(--font-pfaze-letter-spacing);
 
   cursor: pointer;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out, filter 0.3s ease-in-out;
-
-  /* Сбрасываем возможные глобальные ограничения */
-  height: auto !important;
-  min-height: 0;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  margin: 0;                 /* чтобы не было неожиданных внешних отступов */
 }
 
-/* Варианты */
+/* 1) Дефолтная */
 .app-window .settings-sidebar .window-menu-btn.default {
   background: var(--color-white);
   color: var(--color-text);
   border: none;
 }
 
+/* 2) Акцентная */
 .app-window .settings-sidebar .window-menu-btn.accent {
   background: var(--color-white);
   color: transparent;
@@ -42,11 +42,13 @@
   border-radius: 12px;
 }
 
+/* 3) Ховер */
 .app-window .settings-sidebar .window-menu-btn:hover:not(.disabled) {
   background: var(--color-gradient-accent);
   color: var(--color-white);
 }
 
+/* 4) Дизэйбл */
 .app-window .settings-sidebar .window-menu-btn.disabled {
   background: var(--color-primary);
   border: 1px solid var(--color-disabled-text);

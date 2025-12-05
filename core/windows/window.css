@@ -8,9 +8,9 @@
   min-width: 300px;
   min-height: 300px;
 
-  padding: 2px;                      /* толщина рамки */
-  border-radius: var(--radius-global); /* 40px */
-  background: var(--color-gradient-accent); /* градиент рамки */
+  padding: 2px;                       /* толщина рамки */
+  border-radius: var(--radius-global);/* 40px */
+  background: var(--color-gradient-accent);
   box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
   display: flex;
   z-index: 1000;
@@ -19,24 +19,23 @@
 /* Внутренний контейнер: фон окна */
 .app-window-inner {
   flex: 1;
-  background: var(--color-primary);  /* внутри — НЕ градиент */
-  border-radius: inherit;            /* совпадает с внешним радиусом */
-  overflow: hidden;                  /* если нужно отсечь внутренние углы */
+  background: var(--color-primary);
+  border-radius: inherit;             /* совпадает с внешним радиусом */
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-/* Заголовок: если не нужен градиент — делаем простой фон */
+/* Заголовок */
 .window-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 32px;
   height: 80px;
-  background: transparent;           /* убираем градиент, чтобы не казалось, что окно залито */
+  background: var(--color-gradient-accent); /* градиент только в хедере */
   color: var(--color-white);
   box-sizing: border-box;
-  user-select: none;
 }
 
 /* Типографика */
@@ -69,15 +68,3 @@
   width: 100%;
   height: 100%;
 }
-
-
-
-
-
-
-
-
-
-
-
-

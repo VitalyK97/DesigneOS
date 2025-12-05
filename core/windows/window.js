@@ -26,11 +26,10 @@
     initialLeft = rect.left;
     initialTop = rect.top;
 
-    // чтобы окно точно было абсолютным
     appWindow.style.position = 'absolute';
     appWindow.style.margin = 0;
 
-    e.preventDefault(); // отключаем выделение текста
+    e.preventDefault();
   });
 
   document.addEventListener('mousemove', (e) => {

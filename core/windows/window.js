@@ -1,4 +1,3 @@
-// запускаем сразу после вставки окна
 (() => {
   const appWindow = document.getElementById('appWindow');
   const closeWindow = document.getElementById('closeWindow');
@@ -15,13 +14,16 @@
   });
 
   // перемещение
-  let isDragging = false, offsetX, offsetY;
+  let isDragging = false;
+  let offsetX = 0, offsetY = 0;
 
   windowHeader.addEventListener('mousedown', (e) => {
     isDragging = true;
+    // координаты курсора относительно окна
     offsetX = e.clientX - appWindow.offsetLeft;
     offsetY = e.clientY - appWindow.offsetTop;
-    appWindow.style.position = 'absolute'; // важно!
+    // чтобы окно точно было абсолютным
+    appWindow.style.position = 'absolute';
   });
 
   document.addEventListener('mousemove', (e) => {
@@ -35,3 +37,5 @@
     isDragging = false;
   });
 })();
+
+

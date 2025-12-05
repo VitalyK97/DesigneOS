@@ -29,5 +29,13 @@
   --font-grotesk-size: 32px;
   --font-grotesk-line-height: 40px;
   --font-grotesk-letter-spacing: 0%;
+
+    /* Заголовок окна */
+  --font-window-title-family: 'Inter', sans-serif;
+  --font-window-title-weight: 500;
+  --font-window-title-size: 40px;
+  --font-window-title-spacing: 0%;
+  --font-window-title-line-height: 1.2;
 }
+
 

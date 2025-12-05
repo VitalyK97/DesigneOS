@@ -20,11 +20,11 @@
 
   windowHeader.addEventListener('mousedown', (e) => {
     isDragging = true;
-    const rect = appWindow.getBoundingClientRect();
     startX = e.clientX;
     startY = e.clientY;
-    initialLeft = rect.left;
-    initialTop = rect.top;
+    // читаем текущие координаты из style, а не из rect
+    initialLeft = parseInt(appWindow.style.left || appWindow.offsetLeft, 10);
+    initialTop = parseInt(appWindow.style.top || appWindow.offsetTop, 10);
 
     appWindow.style.position = 'absolute';
     appWindow.style.margin = 0;

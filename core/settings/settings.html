@@ -1,18 +1,18 @@
 <div class="settings-layout">
   <!-- Левая панель -->
   <div class="settings-sidebar">
-    <!-- Акцентная кнопка -->
+    <!-- Верхняя часть меню (градиент, фикс. высота 64) -->
+    <div class="settings-sidebar-header">
+      <span>Меню</span>
+      <button class="window-close-mini" title="Свернуть">×</button>
+    </div>
+
+    <!-- Кнопки -->
     <button class="window-menu-btn accent" data-target="designos">О DesignOS</button>
-
-    <!-- Дефолтная кнопка -->
     <button class="window-menu-btn default" data-target="aboutme">Обо мне</button>
-
-    <!-- Недоступная кнопка -->
     <button class="window-menu-btn disabled" disabled>Рабочий стол</button>
   </div>
 
   <!-- Правая панель -->
-  <div class="settings-content" id="settingsContent">
-    <!-- Появится при клике -->
-  </div>
+  <div class="settings-content" id="settingsContent"></div>
 </div>

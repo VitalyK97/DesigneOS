@@ -1,6 +1,8 @@
 /* Кнопки меню окон */
 .window-menu-btn {
-  padding: 10px 16px;
+  display: block;              /* кнопка занимает всю ширину */
+  width: 100%;                 /* растягивается по контейнеру */
+  padding: 0.5em 1em;          /* отступы зависят от шрифта */
   border-radius: 12px;
   font-family: var(--font-pfaze-family);
   font-weight: var(--font-pfaze-weight);
@@ -11,7 +13,6 @@
   transition: all 0.3s ease-in-out;
   box-sizing: border-box;
   margin-bottom: 12px;
-  width: 100%;
   text-align: left;
 }
 

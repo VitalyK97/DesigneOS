@@ -38,7 +38,7 @@
   font-size: var(--font-window-title-size);
   letter-spacing: var(--font-window-title-spacing);
   line-height: var(--font-window-title-line-height);
-  color: var(--window-header-text-color);
+  color: var(--color-white);
 }
 
 .window-body {
@@ -53,10 +53,12 @@
   width: 40px;
   height: 40px;
   padding: 0;
+}
 
-  .window-close img {
+.window-close img {
   width: 100%;
   height: 100%;
-  filter: invert(1); /* делает иконку белой, если svg чёрный */
 }
+
+
 

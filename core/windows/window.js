@@ -22,7 +22,6 @@
     isDragging = true;
     startX = e.clientX;
     startY = e.clientY;
-    // читаем текущие координаты из style, а не из rect
     initialLeft = parseInt(appWindow.style.left || appWindow.offsetLeft, 10);
     initialTop = parseInt(appWindow.style.top || appWindow.offsetTop, 10);
 

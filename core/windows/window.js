@@ -15,21 +15,30 @@
 
   // перемещение
   let isDragging = false;
-  let offsetX = 0, offsetY = 0;
+  let startX = 0, startY = 0;
+  let initialLeft = 0, initialTop = 0;
 
   windowHeader.addEventListener('mousedown', (e) => {
     isDragging = true;
-    // координаты курсора относительно окна
-    offsetX = e.clientX - appWindow.offsetLeft;
-    offsetY = e.clientY - appWindow.offsetTop;
+    const rect = appWindow.getBoundingClientRect();
+    startX = e.clientX;
+    startY = e.clientY;
+    initialLeft = rect.left;
+    initialTop = rect.top;
+
     // чтобы окно точно было абсолютным
     appWindow.style.position = 'absolute';
+    appWindow.style.margin = 0;
+
+    e.preventDefault(); // отключаем выделение текста
   });
 
   document.addEventListener('mousemove', (e) => {
     if (isDragging) {
-      appWindow.style.left = (e.clientX - offsetX) + 'px';
-      appWindow.style.top = (e.clientY - offsetY) + 'px';
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      appWindow.style.left = (initialLeft + dx) + 'px';
+      appWindow.style.top = (initialTop + dy) + 'px';
     }
   });
 
@@ -37,5 +46,3 @@
     isDragging = false;
   });
 })();
-
-

@@ -1,0 +1,39 @@
+.settings-layout {
+  display: flex;
+  height: 100%;
+}
+
+/* Левая панель */
+.settings-sidebar {
+  width: 200px;
+  background: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.settings-btn {
+  margin-bottom: 12px;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  background: var(--color-gradient-accent);
+  color: var(--color-white);
+  font-family: var(--font-pfaze-family);
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.settings-btn:hover {
+  filter: brightness(1.1);
+}
+
+/* Правая панель */
+.settings-content {
+  flex: 1;
+  background: var(--color-white);
+  margin: 16px;
+  border-radius: var(--radius-global);
+  box-shadow: var(--shadow-inner-gray); /* внутренняя тень из библиотеки */
+}

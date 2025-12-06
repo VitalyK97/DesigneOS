@@ -95,9 +95,15 @@ html, body {
 
 .phase-button:hover {
   background-color: var(--color-phase-hover);
-  border: 8px solid transparent;
-  border-image: var(--color-gradient-accent) 1;
-  border-image-slice: 1;
+  border: 4px solid transparent;       /* обводка 4px */
+  border-radius: var(--radius-global); /* скругление сохраняется */
+
+  /* двойной фон: первый — внутренний цвет, второй — градиент для рамки */
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-image:
+    linear-gradient(var(--color-phase-hover), var(--color-phase-hover)), /* фон */
+    var(--color-gradient-accent);                                        /* рамка */
 }
 
 /* Фрейм приложений */
@@ -200,3 +206,4 @@ html, body {
   color: var(--color-text);
   opacity: 0.7;        /* лёгкая прозрачность */
 }
+

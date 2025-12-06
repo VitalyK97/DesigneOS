@@ -141,6 +141,42 @@ document.querySelector(".toolbar-button img[alt='Notes']").parentElement.addEven
 });
 
 // Референсы
-document.querySelector(".toolbar-button img[alt='Reference']").parentElement.addEventListener('click', () => {
-  openAppWindow('Референсы', 'apps/references/references.html', 'apps/references/references.css', 'apps/references/references.js');
+document.querySelector(".toolbar-button img[alt='Reference']").parentElement.addEventListener("click", () => {
+  fetch("core/windows/window.html")
+    .then(res => res.text())
+    .then(html => {
+      const container = document.getElementById("windows-container");
+      container.insertAdjacentHTML("beforeend", html);
+      const newWindow = container.lastElementChild;
+
+      newWindow.querySelector(".window-title").textContent = "Референсы";
+
+      fetch("apps/references/references.html")
+        .then(res => res.text())
+        .then(appHtml => {
+          newWindow.querySelector(".window-body").innerHTML = appHtml;
+
+          // Стили приложения
+          const style = document.createElement("link");
+          style.rel = "stylesheet";
+          style.href = "apps/references/references.css";
+          document.head.appendChild(style);
+
+          // JS приложения — ждём загрузку, затем инициализируем конкретный экземпляр
+          const script = document.createElement("script");
+          script.src = "apps/references/references.js";
+          script.onload = () => {
+            if (window.initReferences) {
+              const root = newWindow.querySelector(".window-body");
+              window.initReferences(root);
+            }
+          };
+          document.body.appendChild(script);
+        })
+        .finally(() => {
+          // базовая инициализация окна: drag/close/z-index
+          initWindowInstance(newWindow);
+        });
+    });
 });
+

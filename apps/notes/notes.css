@@ -20,18 +20,19 @@
   width: 128px;
   height: 48px;
   border-radius: var(--radius-global);
-  background: var(--color-gradient-accent);
-  color: #fff;
+  background: var(--color-primary); /* фон кнопки остаётся базовым */
   font-family: var(--font-pfaze-family);
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
   transition: transform 0.3s ease-in-out;
-}
 
-.notes-create-btn:hover {
-  transform: scale(1.1);
+  /* градиент для текста */
+  background-image: var(--color-gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .notes-right {

@@ -56,11 +56,13 @@
 
 /* Градиентный текст */
 .app-window .settings-sidebar .window-menu-btn.accent span {
-  background: var(--color-gradient-accent);
+  display: inline-block; /* важно для корректного clip */
+  background-image: var(--color-gradient-accent); /* именно image */
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
-  position: relative; /* чтобы текст был поверх псевдо‑элемента */
+  -webkit-text-fill-color: transparent; /* ключевой момент для Safari/Chrome */
+  color: transparent; /* для остальных браузеров */
+  position: relative;
 }
 
 /* Ховер */

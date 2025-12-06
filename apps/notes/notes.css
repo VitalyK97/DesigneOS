@@ -55,15 +55,6 @@
   opacity: 0.6;
 }
 
-.note-frame {
-  width: 100%;
-  height: 100%;
-  border-radius: var(--radius-global);
-  box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
-  background-color: #fff;
-  padding: 16px;
-}
-
 .note-textarea {
   width: 100%;
   height: 100%;

@@ -30,12 +30,22 @@
 
 /* Акцентная */
 .app-window .settings-sidebar .window-menu-btn.accent {
-  background: var(--color-white); /* белый фон */
-  color: var(--color-text);       /* обычный текст, чтобы был виден */
-  border: 2px solid transparent;
+  position: relative;
   border-radius: 40px;
+  padding: 12px 16px;
+  width: 100%;
 
-  /* градиентная рамка */
+  /* Белый фон */
+  background: var(--color-white);
+
+  /* Градиентный текст */
+  color: transparent;
+  background-image: var(--color-gradient-accent);
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  /* Градиентная рамка */
+  border: 2px solid transparent;
   background-origin: border-box;
   background-clip: padding-box, border-box;
   background-image:

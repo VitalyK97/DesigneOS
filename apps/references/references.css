@@ -1,28 +1,40 @@
-/* Контейнер всего окна (без левой панели) */
 .references-layout {
   display: flex;
   height: 100%;
   box-sizing: border-box;
 }
 
-/* Правая панель — повторяет стиль settings-content */
 .references-content {
-  flex: 2;                      /* занимает всё доступное пространство */
+  flex: 2;
   background: var(--color-white);
   margin: 16px;
   border-radius: var(--radius-global);
   box-shadow: var(--shadow-inner-gray);
-  padding: 16px;                /* внутренний отступ для сетки */
+  padding: 16px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Сетка изображений внутри правой панели */
+.references-dropzone {
+  border: 2px dashed var(--color-gradient-accent);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  color: var(--color-text);
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background 0.3s ease-in-out;
+}
+
+.references-dropzone.dragover {
+  background: rgba(0,0,0,0.05);
+}
+
 .references-grid {
+  flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* адаптивная сетка */
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
-  width: 100%;
-  height: 100%;
-  overflow: auto;               /* скролл, если много картинок */
-  border-radius: calc(var(--radius-global) - 4px);
+  overflow-y: auto;
 }

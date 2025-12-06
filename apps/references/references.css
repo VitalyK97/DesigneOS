@@ -1,0 +1,24 @@
+.references-window {
+  display: flex;
+  height: 60vh;
+  border-radius: var(--radius-global);
+  background-color: var(--color-primary);
+  box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
+  overflow: hidden;
+}
+
+.references-right {
+  flex: 1;
+  background-color: #fff; /* белый фон */
+  border-radius: var(--radius-global);
+  margin: 16px;
+  box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark); /* эффект глубины */
+  padding: 24px;
+}
+
+.references-placeholder {
+  font-family: var(--font-grotesk-family);
+  font-size: 16px;
+  color: var(--color-text);
+  opacity: 0.6;
+}

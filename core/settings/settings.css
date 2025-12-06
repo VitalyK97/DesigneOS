@@ -5,12 +5,11 @@
 
 /* Левая панель */
 .settings-sidebar {
+  flex: 1;                  /* растягивается на всё окно, если правая часть скрыта */
   display: flex;
   flex-direction: column;
-  gap: 16px;         /* расстояние между кнопками — 16px */
-  padding: 16px;
-  padding-top: 32px; /* отступ сверху — 32px */
-  width: 200px;
+  gap: 16px;                /* расстояние между кнопками */
+  padding: 32px 16px 16px;  /* отступ сверху 32px */
   box-sizing: border-box;
 }
 
@@ -31,10 +30,10 @@
 
 /* Правая панель */
 .settings-content {
-  flex: 1;
+  flex: 2;                  /* занимает оставшееся пространство */
   background: var(--color-white);
   margin: 16px;
   border-radius: var(--radius-global);
   box-shadow: var(--shadow-inner-gray);
-  display: none; /* скрыта по умолчанию */
+  display: none;            /* скрыта по умолчанию */
 }

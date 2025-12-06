@@ -1,22 +1,11 @@
-// Пример динамического добавления изображений в контейнер
-export function addReference(src, alt = "reference") {
-  const grid = document.querySelector(".references-grid");
-  if (!grid) return;
-  const img = document.createElement("img");
-  img.className = "reference-item";
-  img.src = src;
-  img.alt = alt;
-  grid.appendChild(img);
-}
-
-// Инициализация сразу при загрузке скрипта
-(function initReferences() {
-  const dropzone = document.querySelector(".references-dropzone");
-  const input = document.getElementById("references-input");
-  const grid = document.querySelector(".references-grid");
+// Экспортируем явную функцию инициализации для конкретного окна
+window.initReferences = function(root) {
+  const dropzone = root.querySelector(".references-dropzone");
+  const input = root.querySelector("#references-input");
+  const grid = root.querySelector(".references-grid");
 
   if (!dropzone || !input || !grid) {
-    console.error("References elements not found");
+    console.error("References elements not found in window", root);
     return;
   }
 
@@ -44,7 +33,7 @@ export function addReference(src, alt = "reference") {
     handleFiles(input.files);
   });
 
-  // Функция добавления картинок
+  // Добавление изображений в текущую сетку
   function handleFiles(files) {
     [...files].forEach(file => {
       if (!file.type.startsWith("image/")) return;
@@ -59,4 +48,4 @@ export function addReference(src, alt = "reference") {
       reader.readAsDataURL(file);
     });
   }
-})();
+};

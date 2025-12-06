@@ -20,7 +20,7 @@
   width: 128px;
   height: 48px;
   border-radius: var(--radius-global);
-  background: var(--color-primary); /* фон кнопки остаётся базовым */
+  background-color: #fff; /* белый фон */
   font-family: var(--font-pfaze-family);
   font-size: 16px;
   font-weight: bold;
@@ -28,8 +28,16 @@
   box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
   transition: transform 0.3s ease-in-out;
 
+  /* градиентная обводка */
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(#fff, #fff), /* фон */
+    var(--color-gradient-accent); /* градиент для рамки */
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
   /* градиент для текста */
-  background-image: var(--color-gradient-accent);
+  background: var(--color-gradient-accent);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

@@ -73,3 +73,35 @@ document.head.appendChild(styleButtons);
     });
 });
 
+// Окно References
+document.querySelector(".toolbar-button img[alt='Reference']").parentElement.addEventListener("click", () => {
+  fetch("core/windows/window.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("windows-container").innerHTML = html;
+      document.querySelector(".window-title").textContent = "Референсы";
+
+      fetch("apps/references/references.html")
+        .then(res => res.text())
+        .then(appHtml => {
+          document.querySelector(".window-body").innerHTML = appHtml;
+
+          // Подключаем стили приложения
+          const style = document.createElement("link");
+          style.rel = "stylesheet";
+          style.href = "apps/references/references.css";
+          document.head.appendChild(style);
+
+          // Подключаем JS приложения
+          const script = document.createElement("script");
+          script.src = "apps/references/references.js";
+          document.body.appendChild(script);
+        });
+
+      // Подключаем JS окна (drag/close)
+      const script = document.createElement("script");
+      script.src = "core/windows/window.js";
+      document.body.appendChild(script);
+    });
+});
+

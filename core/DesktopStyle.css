@@ -75,6 +75,12 @@ html, body {
   margin-top: 10vh;
 }
 
+.phase-item {
+  display: flex;
+  flex-direction: column;   /* кнопка сверху, текст снизу */
+  align-items: center;
+}
+
 .phase-button {
   width: 192px;
   height: 192px;
@@ -88,22 +94,40 @@ html, body {
 
 .phase-button img,
 .phase-button .toolbar-icon {
-  width: calc(100% - 92px);   /* 46px слева + 46px справа */
-  height: calc(100% - 92px);  /* 46px сверху + 46px снизу */
-  object-fit: contain;        /* сохраняем пропорции */
+  width: calc(100% - 92px);
+  height: calc(100% - 92px);
+  object-fit: contain;
 }
 
 .phase-button:hover {
   background-color: var(--color-phase-hover);
-  border: 4px solid transparent;       /* обводка 4px */
-  border-radius: var(--radius-global); /* скругление сохраняется */
-
-  /* двойной фон: первый — внутренний цвет, второй — градиент для рамки */
+  border: 4px solid transparent;
+  border-radius: var(--radius-global);
   background-origin: border-box;
   background-clip: padding-box, border-box;
   background-image:
-    linear-gradient(var(--color-phase-hover), var(--color-phase-hover)), /* фон */
-    var(--color-gradient-accent);                                        /* рамка */
+    linear-gradient(var(--color-phase-hover), var(--color-phase-hover)),
+    var(--color-gradient-accent);
+}
+
+/* Подпись */
+.phase-label {
+  margin-top: 16px;
+  font-family: var(--font-pfaze-family);
+  font-weight: var(--font-pfaze-weight);
+  font-size: var(--font-pfaze-size);
+  letter-spacing: var(--font-pfaze-letter-spacing);
+  color: var(--color-text);
+  text-align: center;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* При ховере на кнопку — подпись становится градиентной */
+.phase-item:hover .phase-label {
+  background: var(--color-gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Фрейм приложений */
@@ -222,5 +246,6 @@ html, body {
   color: var(--color-text);
   opacity: 0.7;        /* лёгкая прозрачность */
 }
+
 
 

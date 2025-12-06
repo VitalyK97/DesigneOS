@@ -9,10 +9,16 @@ export function addReference(src, alt = "reference") {
   grid.appendChild(img);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+// Инициализация сразу при загрузке скрипта
+(function initReferences() {
   const dropzone = document.querySelector(".references-dropzone");
   const input = document.getElementById("references-input");
   const grid = document.querySelector(".references-grid");
+
+  if (!dropzone || !input || !grid) {
+    console.error("References elements not found");
+    return;
+  }
 
   // Клик по зоне открывает выбор файлов
   dropzone.addEventListener("click", () => input.click());
@@ -53,4 +59,4 @@ document.addEventListener("DOMContentLoaded", () => {
       reader.readAsDataURL(file);
     });
   }
-});
+})();

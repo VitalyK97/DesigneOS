@@ -65,5 +65,11 @@ document.querySelector(".toolbar-button img[alt='Notes']").parentElement.addEven
       const script = document.createElement("script");
       script.src = "core/windows/window.js";
       document.body.appendChild(script);
+
+      const styleButtons = document.createElement("link");
+styleButtons.rel = "stylesheet";
+styleButtons.href = "core/windows/window-buttons.css";
+document.head.appendChild(styleButtons);
     });
 });
+

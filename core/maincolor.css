@@ -20,7 +20,7 @@
 /*  Шрифты */
   --font-pfaze-family: 'Inter', sans-serif;
   --font-pfaze-weight: 600;
-  --font-pfaze-size: 24px;
+  --font-pfaze-size: 16px;
   --font-pfaze-line-height: 24px;
   --font-pfaze-letter-spacing: 0%;
 
@@ -37,5 +37,6 @@
   --font-window-title-spacing: 0%;
   --font-window-title-line-height: 1.2;
 }
+
 
 

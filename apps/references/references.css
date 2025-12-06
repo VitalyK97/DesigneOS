@@ -26,13 +26,3 @@
   overflow: auto;               /* скролл, если много картинок */
   border-radius: calc(var(--radius-global) - 4px);
 }
-
-/* Карточка изображения */
-.reference-item {
-  width: 100%;
-  height: 160px;                /* базовая высота карточки */
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
-  background: var(--color-primary); /* запасной фон, если нет src */
-}

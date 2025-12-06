@@ -9,99 +9,62 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// Окно Настроек
-document.querySelector(".settings-button").addEventListener("click", () => {
-  // Загружаем универсальное окно
+// Универсальная функция открытия окна
+function openAppWindow(title, htmlPath, cssPath, jsPath) {
   fetch("core/windows/window.html")
     .then(res => res.text())
     .then(html => {
-      document.getElementById("windows-container").innerHTML = html;
-      // Меняем заголовок окна
-      document.querySelector(".window-title").textContent = "Настройки";
-      // Загружаем контент приложения
-      fetch("core/settings/settings.html")
+      const container = document.getElementById("windows-container");
+      container.insertAdjacentHTML("beforeend", html); // добавляем новое окно
+      const newWindow = container.lastElementChild;
+
+      // Заголовок
+      newWindow.querySelector(".window-title").textContent = title;
+
+      // Контент приложения
+      fetch(htmlPath)
         .then(res => res.text())
         .then(appHtml => {
-          document.querySelector(".window-body").innerHTML = appHtml;
-          // Подключаем стили и JS приложения
-          const style = document.createElement("link");
-          style.rel = "stylesheet";
-          style.href = "core/settings/settings.css";
-          document.head.appendChild(style);
-          const script = document.createElement("script");
-          script.src = "core/settings/settings.js";
-          document.body.appendChild(script);
+          newWindow.querySelector(".window-body").innerHTML = appHtml;
+
+          if (cssPath) {
+            const style = document.createElement("link");
+            style.rel = "stylesheet";
+            style.href = cssPath;
+            document.head.appendChild(style);
+          }
+
+          if (jsPath) {
+            const script = document.createElement("script");
+            script.src = jsPath;
+            document.body.appendChild(script);
+          }
         });
-      // Подключаем JS окна (drag/close)
+
+      // Логика окна (drag/close)
       const script = document.createElement("script");
       script.src = "core/windows/window.js";
       document.body.appendChild(script);
     });
+}
+
+// Окно Настроек
+document.querySelector(".settings-button").addEventListener("click", () => {
+  openAppWindow("Настройки", "core/settings/settings.html", "core/settings/settings.css", "core/settings/settings.js");
 });
 
 // Окно Заметок
 document.querySelector(".toolbar-button img[alt='Notes']").parentElement.addEventListener("click", () => {
-  fetch("core/windows/window.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("windows-container").innerHTML = html;
-      document.querySelector(".window-title").textContent = "Заметки";
+  openAppWindow("Заметки", "apps/notes/notes.html", "apps/notes/notes.css", "apps/notes/notes.js");
 
-      fetch("apps/notes/notes.html")
-        .then(res => res.text())
-        .then(appHtml => {
-          document.querySelector(".window-body").innerHTML = appHtml;
-
-          const style = document.createElement("link");
-          style.rel = "stylesheet";
-          style.href = "apps/notes/notes.css";
-          document.head.appendChild(style);
-
-          const script = document.createElement("script");
-          script.src = "apps/notes/notes.js";
-          document.body.appendChild(script);
-        });
-
-      const script = document.createElement("script");
-      script.src = "core/windows/window.js";
-      document.body.appendChild(script);
-
-      const styleButtons = document.createElement("link");
-styleButtons.rel = "stylesheet";
-styleButtons.href = "core/windows/window-buttons.css";
-document.head.appendChild(styleButtons);
-    });
+  // Подключаем стили кнопок
+  const styleButtons = document.createElement("link");
+  styleButtons.rel = "stylesheet";
+  styleButtons.href = "core/windows/window-buttons.css";
+  document.head.appendChild(styleButtons);
 });
 
 // Окно References
 document.querySelector(".toolbar-button img[alt='Reference']").parentElement.addEventListener("click", () => {
-  fetch("core/windows/window.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("windows-container").innerHTML = html;
-      document.querySelector(".window-title").textContent = "Референсы";
-
-      fetch("apps/references/references.html")
-        .then(res => res.text())
-        .then(appHtml => {
-          document.querySelector(".window-body").innerHTML = appHtml;
-
-          // Подключаем стили приложения
-          const style = document.createElement("link");
-          style.rel = "stylesheet";
-          style.href = "apps/references/references.css";
-          document.head.appendChild(style);
-
-          // Подключаем JS приложения
-          const script = document.createElement("script");
-          script.src = "apps/references/references.js";
-          document.body.appendChild(script);
-        });
-
-      // Подключаем JS окна (drag/close)
-      const script = document.createElement("script");
-      script.src = "core/windows/window.js";
-      document.body.appendChild(script);
-    });
+  openAppWindow("Референсы", "apps/references/references.html", "apps/references/references.css", "apps/references/references.js");
 });
-

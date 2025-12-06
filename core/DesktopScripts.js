@@ -14,18 +14,15 @@ let zCounter = 100;
 
 // Инициализация одного окна: заголовок, close, drag, z-index
 function initWindowInstance(winEl) {
-  // позиция и стек
   winEl.style.position = 'absolute';
   winEl.style.left = `${24 + (Math.random() * 40 | 0)}px`;
   winEl.style.top = `${24 + (Math.random() * 40 | 0)}px`;
   winEl.style.zIndex = ++zCounter;
 
-  // поднимать при фокусе
   winEl.addEventListener('mousedown', () => {
     winEl.style.zIndex = ++zCounter;
   });
 
-  // закрытие
   const closeBtn = winEl.querySelector('.window-close');
   if (closeBtn) {
     closeBtn.addEventListener('click', (e) => {
@@ -34,11 +31,9 @@ function initWindowInstance(winEl) {
     });
   }
 
-  // drag по заголовку
   const header = winEl.querySelector('.window-header');
   if (header) {
     let dragging = false, startX = 0, startY = 0, origX = 0, origY = 0;
-
     header.style.cursor = 'move';
 
     header.addEventListener('mousedown', (e) => {
@@ -74,39 +69,34 @@ function appendWindowFromTemplate(templateHtml) {
   const doc = parser.parseFromString(templateHtml, 'text/html');
   const winEl = doc.querySelector('.app-window');
   if (!winEl) return null;
-
-  // важно: переносим готовый элемент в контейнер (не innerHTML!)
   document.getElementById('windows-container').appendChild(winEl);
   return winEl;
 }
 
 // Универсальное открытие нового окна
-function openAppWindow(title, htmlPath, cssPath, jsPath, extraCss = []) {
+function openAppWindow(title, htmlPath, cssPath, jsPath, extraCss = [], initFnName = null) {
   fetch('core/windows/window.html')
     .then(res => res.text())
     .then(html => {
       const winEl = appendWindowFromTemplate(html);
       if (!winEl) return;
 
-      // заголовок
       const titleEl = winEl.querySelector('.window-title');
       if (titleEl) titleEl.textContent = title;
 
-      // контент приложения
       fetch(htmlPath)
         .then(res => res.text())
         .then(appHtml => {
           const bodyEl = winEl.querySelector('.window-body');
           if (bodyEl) bodyEl.innerHTML = appHtml;
 
-          // стили приложения
           if (cssPath) {
             const style = document.createElement('link');
             style.rel = 'stylesheet';
             style.href = cssPath;
             document.head.appendChild(style);
           }
-          // дополнительные стили (например, кнопки окна)
+
           extraCss.forEach(href => {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
@@ -114,15 +104,19 @@ function openAppWindow(title, htmlPath, cssPath, jsPath, extraCss = []) {
             document.head.appendChild(link);
           });
 
-          // JS приложения
           if (jsPath) {
             const script = document.createElement('script');
             script.src = jsPath;
+            script.onload = () => {
+              if (initFnName && window[initFnName]) {
+                const root = winEl.querySelector('.window-body');
+                window[initFnName](root);
+              }
+            };
             document.body.appendChild(script);
           }
         })
         .finally(() => {
-          // локальная инициализация управления окном
           initWindowInstance(winEl);
         });
     });
@@ -130,53 +124,33 @@ function openAppWindow(title, htmlPath, cssPath, jsPath, extraCss = []) {
 
 // Настройки
 document.querySelector('.settings-button').addEventListener('click', () => {
-  openAppWindow('Настройки', 'core/settings/settings.html', 'core/settings/settings.css', 'core/settings/settings.js');
+  openAppWindow(
+    'Настройки',
+    'core/settings/settings.html',
+    'core/settings/settings.css',
+    'core/settings/settings.js'
+  );
 });
 
 // Заметки
 document.querySelector(".toolbar-button img[alt='Notes']").parentElement.addEventListener('click', () => {
-  openAppWindow('Заметки', 'apps/notes/notes.html', 'apps/notes/notes.css', 'apps/notes/notes.js', [
-    'core/windows/window-buttons.css'
-  ]);
+  openAppWindow(
+    'Заметки',
+    'apps/notes/notes.html',
+    'apps/notes/notes.css',
+    'apps/notes/notes.js',
+    ['core/windows/window-buttons.css']
+  );
 });
 
 // Референсы
-document.querySelector(".toolbar-button img[alt='Reference']").parentElement.addEventListener("click", () => {
-  fetch("core/windows/window.html")
-    .then(res => res.text())
-    .then(html => {
-      const container = document.getElementById("windows-container");
-      container.insertAdjacentHTML("beforeend", html);
-      const newWindow = container.lastElementChild;
-
-      newWindow.querySelector(".window-title").textContent = "Референсы";
-
-      fetch("apps/references/references.html")
-        .then(res => res.text())
-        .then(appHtml => {
-          newWindow.querySelector(".window-body").innerHTML = appHtml;
-
-          // Стили приложения
-          const style = document.createElement("link");
-          style.rel = "stylesheet";
-          style.href = "apps/references/references.css";
-          document.head.appendChild(style);
-
-          // JS приложения — ждём загрузку, затем инициализируем конкретный экземпляр
-          const script = document.createElement("script");
-          script.src = "apps/references/references.js";
-          script.onload = () => {
-            if (window.initReferences) {
-              const root = newWindow.querySelector(".window-body");
-              window.initReferences(root);
-            }
-          };
-          document.body.appendChild(script);
-        })
-        .finally(() => {
-          // базовая инициализация окна: drag/close/z-index
-          initWindowInstance(newWindow);
-        });
-    });
+document.querySelector(".toolbar-button img[alt='Reference']").parentElement.addEventListener('click', () => {
+  openAppWindow(
+    'Референсы',
+    'apps/references/references.html',
+    'apps/references/references.css',
+    'apps/references/references.js',
+    [],
+    'initReferences' // вызываем функцию инициализации из references.js
+  );
 });
-

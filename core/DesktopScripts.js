@@ -9,52 +9,58 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// Локальная инициализация окна: закрыть, перетащить, стекировать
-let zCounter = 10;
-function initWindowInstance(win) {
-  // базовое позиционирование и стекировка
-  win.style.position = 'absolute';
-  win.style.top = `${24 + (Math.random() * 40 | 0)}px`;
-  win.style.left = `${24 + (Math.random() * 40 | 0)}px`;
-  win.style.zIndex = ++zCounter;
+// Z-стек для окон
+let zCounter = 100;
 
-  // bring to front on click
-  win.addEventListener('mousedown', () => {
-    win.style.zIndex = ++zCounter;
+// Инициализация одного окна: заголовок, close, drag, z-index
+function initWindowInstance(winEl) {
+  // позиция и стек
+  winEl.style.position = 'absolute';
+  winEl.style.left = `${24 + (Math.random() * 40 | 0)}px`;
+  winEl.style.top = `${24 + (Math.random() * 40 | 0)}px`;
+  winEl.style.zIndex = ++zCounter;
+
+  // поднимать при фокусе
+  winEl.addEventListener('mousedown', () => {
+    winEl.style.zIndex = ++zCounter;
   });
 
-  // close
-  const closeBtn = win.querySelector('.window-close');
+  // закрытие
+  const closeBtn = winEl.querySelector('.window-close');
   if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      win.remove();
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      winEl.remove();
     });
   }
 
-  // drag by header
-  const header = win.querySelector('.window-header');
+  // drag по заголовку
+  const header = winEl.querySelector('.window-header');
   if (header) {
     let dragging = false, startX = 0, startY = 0, origX = 0, origY = 0;
+
+    header.style.cursor = 'move';
 
     header.addEventListener('mousedown', (e) => {
       dragging = true;
       startX = e.clientX;
       startY = e.clientY;
-      const rect = win.getBoundingClientRect();
+      const rect = winEl.getBoundingClientRect();
       origX = rect.left;
       origY = rect.top;
       document.body.style.userSelect = 'none';
+      winEl.style.zIndex = ++zCounter;
     });
 
-    document.addEventListener('mousemove', (e) => {
+    window.addEventListener('mousemove', (e) => {
       if (!dragging) return;
       const dx = e.clientX - startX;
       const dy = e.clientY - startY;
-      win.style.left = `${origX + dx}px`;
-      win.style.top = `${origY + dy}px`;
+      winEl.style.left = `${origX + dx}px`;
+      winEl.style.top = `${origY + dy}px`;
     });
 
-    document.addEventListener('mouseup', () => {
+    window.addEventListener('mouseup', () => {
       if (!dragging) return;
       dragging = false;
       document.body.style.userSelect = '';
@@ -62,83 +68,79 @@ function initWindowInstance(win) {
   }
 }
 
+// Вставка окна: парсим шаблон и добавляем .app-window узел
+function appendWindowFromTemplate(templateHtml) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(templateHtml, 'text/html');
+  const winEl = doc.querySelector('.app-window');
+  if (!winEl) return null;
+
+  // важно: переносим готовый элемент в контейнер (не innerHTML!)
+  document.getElementById('windows-container').appendChild(winEl);
+  return winEl;
+}
+
 // Универсальное открытие нового окна
 function openAppWindow(title, htmlPath, cssPath, jsPath, extraCss = []) {
-  fetch("core/windows/window.html")
+  fetch('core/windows/window.html')
     .then(res => res.text())
     .then(html => {
-      const container = document.getElementById("windows-container");
-      container.insertAdjacentHTML("beforeend", html);
-      const newWindow = container.lastElementChild;
+      const winEl = appendWindowFromTemplate(html);
+      if (!winEl) return;
 
-      // устанавливаем заголовок
-      newWindow.querySelector(".window-title").textContent = title;
+      // заголовок
+      const titleEl = winEl.querySelector('.window-title');
+      if (titleEl) titleEl.textContent = title;
 
-      // загружаем контент приложения
+      // контент приложения
       fetch(htmlPath)
         .then(res => res.text())
         .then(appHtml => {
-          newWindow.querySelector(".window-body").innerHTML = appHtml;
+          const bodyEl = winEl.querySelector('.window-body');
+          if (bodyEl) bodyEl.innerHTML = appHtml;
 
-          // подключаем стили
+          // стили приложения
           if (cssPath) {
-            const style = document.createElement("link");
-            style.rel = "stylesheet";
+            const style = document.createElement('link');
+            style.rel = 'stylesheet';
             style.href = cssPath;
             document.head.appendChild(style);
           }
           // дополнительные стили (например, кнопки окна)
           extraCss.forEach(href => {
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
             link.href = href;
             document.head.appendChild(link);
           });
 
-          // подключаем JS приложения
+          // JS приложения
           if (jsPath) {
-            const script = document.createElement("script");
+            const script = document.createElement('script');
             script.src = jsPath;
             document.body.appendChild(script);
           }
         })
         .finally(() => {
-          // локально инициализируем окно (drag/close/z-index)
-          initWindowInstance(newWindow);
+          // локальная инициализация управления окном
+          initWindowInstance(winEl);
         });
-
-      // НЕ подгружаем core/windows/window.js каждый раз, чтобы не конфликтовать
-      // Если он нужен глобально, подключи его один раз в index.html
     });
 }
 
 // Настройки
-document.querySelector(".settings-button").addEventListener("click", () => {
-  openAppWindow(
-    "Настройки",
-    "core/settings/settings.html",
-    "core/settings/settings.css",
-    "core/settings/settings.js"
-  );
+document.querySelector('.settings-button').addEventListener('click', () => {
+  openAppWindow('Настройки', 'core/settings/settings.html', 'core/settings/settings.css', 'core/settings/settings.js');
 });
 
 // Заметки
-document.querySelector(".toolbar-button img[alt='Notes']").parentElement.addEventListener("click", () => {
-  openAppWindow(
-    "Заметки",
-    "apps/notes/notes.html",
-    "apps/notes/notes.css",
-    "apps/notes/notes.js",
-    ["core/windows/window-buttons.css"] // стили акцентных кнопок
-  );
+document.querySelector(".toolbar-button img[alt='Notes']").parentElement.addEventListener('click', () => {
+  openAppWindow('Заметки', 'apps/notes/notes.html', 'apps/notes/notes.css', 'apps/notes/notes.js', [
+    'core/windows/window-buttons.css'
+  ]);
 });
 
 // Референсы
-document.querySelector(".toolbar-button img[alt='Reference']").parentElement.addEventListener("click", () => {
-  openAppWindow(
-    "Референсы",
-    "apps/references/references.html",
-    "apps/references/references.css",
-    "apps/references/references.js"
-  );
+document.querySelector(".toolbar-button img[alt='Reference']").parentElement.addEventListener('click', () => {
+  openAppWindow('Референсы', 'apps/references/references.html', 'apps/references/references.css', 'apps/references/references.js');
 });

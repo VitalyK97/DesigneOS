@@ -34,7 +34,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 32px;
-  height: 80px;
+  height: 64px;                  /* фиксированная высота */
   background: var(--color-gradient-accent);
   color: var(--color-white);
   box-sizing: border-box;
@@ -77,6 +77,7 @@
 .window-close:hover img {
   transform: rotate(90deg); /* поворот при ховере */
 }
+
 
 
 

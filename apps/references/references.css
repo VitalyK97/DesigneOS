@@ -8,11 +8,11 @@
 }
 
 .references-right {
-  flex: 1;
-  background-color: #fff; /* белый фон */
-  border-radius: var(--radius-global);
+  flex: 2; /* занимает оставшееся пространство */
+  background: var(--color-white);
   margin: 16px;
-  box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark); /* эффект глубины */
+  border-radius: var(--radius-global);
+  box-shadow: var(--shadow-inner-gray);
   padding: 24px;
 }
 

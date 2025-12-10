@@ -15,7 +15,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* важно: чтобы сетка прокручивалась внутри */
+  overflow: hidden; /* сетка прокручивается внутри */
 }
 
 .references-dropzone {
@@ -38,7 +38,7 @@
   margin: 8px auto 12px auto;
   width: 32px;
   height: 32px;
-  pointer-events: none; /* чтобы не ломал drag&drop */
+  pointer-events: none;
 }
 
 .references-grid {
@@ -46,39 +46,36 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 16px;
-  overflow-y: auto;          /* вертикальная прокрутка */
-  overflow-x: hidden;        /* горизонтальная не нужна */
-  scrollbar-width: thin;     /* тонкий скролл для Firefox */
+  overflow-y: auto;   /* вертикальная прокрутка */
+  overflow-x: hidden;
+  scrollbar-width: thin;
 }
 
-/* Для WebKit (Chrome, Safari, Edge) */
 .references-grid::-webkit-scrollbar {
-  width: 8px;                /* ширина полосы прокрутки */
+  width: 8px;
 }
-
 .references-grid::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.2); /* цвет бегунка */
+  background-color: rgba(0,0,0,0.2);
   border-radius: 4px;
 }
-
 .references-grid::-webkit-scrollbar-track {
-  background: transparent;   /* фон дорожки */
+  background: transparent;
 }
 
-/* Элемент изображения */
 .reference-item {
   width: 100px;
   height: 130px;
-  object-fit: contain;    /* уменьшаем пропорционально, без обрезки */
+  object-fit: contain;
   background: transparent;
-  border-radius: 4px;     /* скругление углов */
+  border-radius: 4px;
   box-shadow: none;
 }
 
-/* Панель кнопок */
+/* Панель кнопок закреплена снизу */
 .references-actions {
   display: flex;
   gap: 32px;
-  margin: 16px;
-  min-height: 64px; /* резервируем место под кнопки */
+  padding: 16px;
+  border-top: 1px solid var(--color-border-light);
+  background: var(--color-white);
 }

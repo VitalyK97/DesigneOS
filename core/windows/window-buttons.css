@@ -27,7 +27,7 @@
   color: var(--color-text);
   border: none;
 }
- /* Акцентная кнопка */
+/* Акцентная кнопка */
 .app-window .settings-sidebar .window-menu-btn.accent {
   position: relative;
   width: 100%;
@@ -38,7 +38,6 @@
   cursor: pointer;
   overflow: hidden;
 }
-
 /* Псевдо‑элемент для рамки */
 .app-window .settings-sidebar .window-menu-btn.accent::before {
   content: "";
@@ -52,17 +51,16 @@
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
+  pointer-events: none;
 }
-
-/* Градиентный текст */
+/* Градиентный текст*/
 .app-window .settings-sidebar .window-menu-btn.accent span {
-  display: inline-block; /* важно для корректного clip */
-  background-image: var(--color-gradient-accent); /* именно image */
+  display: inline-block;
+  background: var(--color-gradient-accent);
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent; /* ключевой момент для Safari/Chrome */
-  color: transparent; /* для остальных браузеров */
-  position: relative;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 /* Ховер */

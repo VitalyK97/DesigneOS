@@ -1,10 +1,10 @@
 /* Базовый стиль для всех кнопок */
-.app-window .settings-sidebar .window-menu-btn {
+.window-menu-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 12px 16px;        /* одинаковый паддинг для всех */
+  padding: 12px 16px;
   border-radius: 40px;
   box-sizing: border-box;
 
@@ -21,19 +21,16 @@
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-/* Дефолтная */
-.app-window .settings-sidebar .window-menu-btn.default {
+/* Дефолтная кнопка */
+.window-menu-btn.default {
   background: var(--color-white);
   color: var(--color-text);
   border: none;
 }
 
 /* Акцентная кнопка */
-.app-window .settings-sidebar .window-menu-btn.accent {
+.window-menu-btn.accent {
   position: relative;
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 40px;
   background: var(--color-white);
   border: 2px solid transparent;
   cursor: pointer;
@@ -41,7 +38,7 @@
 }
 
 /* Псевдо‑элемент для рамки */
-.app-window .settings-sidebar .window-menu-btn.accent::before {
+.window-menu-btn.accent::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -57,10 +54,10 @@
 }
 
 /* Градиентный текст */
-.app-window .settings-sidebar .window-menu-btn.accent span {
+.window-menu-btn.accent span {
   display: inline-block;
-  background-image: var(--color-gradient-accent); /* именно image */
-  background-size: 100%; /* чтобы градиент растянулся */
+  background-image: var(--color-gradient-accent);
+  background-size: 100%;
   background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
@@ -69,13 +66,13 @@
 }
 
 /* Ховер */
-.app-window .settings-sidebar .window-menu-btn:hover:not(.disabled) {
+.window-menu-btn:hover:not(.disabled) {
   background: var(--color-gradient-accent);
   color: var(--color-white);
 }
 
 /* Disabled */
-.app-window .settings-sidebar .window-menu-btn.disabled {
+.window-menu-btn.disabled {
   background: var(--color-primary);
   border: 1px solid var(--color-disabled-text);
   color: var(--color-disabled-text);

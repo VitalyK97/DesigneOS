@@ -40,6 +40,15 @@
   overflow-y: auto;
 }
 
+.reference-item {
+  width: 100px;
+  height: 130px;
+  object-fit: contain;   /* уменьшаем пропорционально, без обрезки */
+  background: transparent; /* фон прозрачный */
+  border-radius: 0;        /* убираем скругления, если не нужны */
+  box-shadow: none;        /* убираем тени */
+}
+
 /* Панель кнопок */
 .references-actions {
   display: flex;

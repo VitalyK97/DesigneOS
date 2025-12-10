@@ -68,10 +68,9 @@
   border: none;
   background: var(--color-white);
   color: var(--color-text);
-  box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .references-btn:hover {
-  background: var(--color-primary-light);
+  background: var(--color-gradient-accent);
 }

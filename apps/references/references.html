@@ -1,19 +1,18 @@
 <div class="references-layout">
   <div class="references-content">
-    <!-- Зона дропа -->
     <div class="references-dropzone">
-      <img src="core/icons/add-picture.svg" alt="Добавить картинку" class="dropzone-icon" />
+      <div class="dropzone-icon">
+        <img src="core/icons/reference.svg" alt="Иконка" />
+      </div>
       <p>Перетащите сюда картинки или нажмите для выбора</p>
-      <input type="file" id="references-input" accept="image/*" multiple hidden />
+      <input id="references-input" type="file" accept="image/*" multiple hidden />
     </div>
 
-    <!-- Сетка картинок -->
     <div class="references-grid"></div>
   </div>
 
-  <!-- Панель кнопок -->
   <div class="references-actions">
-    <button class="window-menu-btn default">Выбрать</button>
-    <button class="window-menu-btn default">Удалить все</button>
+    <button class="window-btn" title="Выбрать">Выбрать</button>
+    <button class="window-btn" title="Удалить все">Удалить все</button>
   </div>
 </div>

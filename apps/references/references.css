@@ -1,12 +1,12 @@
 .references-layout {
   display: flex;
-  flex-direction: column; /* чтобы кнопки были под контентом */
+  flex-direction: column;
   height: 100%;
   box-sizing: border-box;
 }
 
 .references-content {
-  flex: 1; /* занимает всё доступное пространство сверху */
+  flex: 1;
   background: var(--color-white);
   margin: 16px;
   border-radius: var(--radius-global);
@@ -28,46 +28,47 @@
   transition: background 0.3s ease-in-out;
 }
 
-.dropzone-icon {
-  display: block;
-  margin: 8px auto 12px auto; /* сверху 8px, снизу 12px для отступа от текста */
-  width: 32px;                /* размер иконки */
-  height: 32px;
-}
-
 .references-dropzone.dragover {
   background: rgba(0,0,0,0.05);
+}
+
+.dropzone-icon {
+  display: block;
+  margin: 8px auto 12px auto;
+  width: 32px;
+  height: 32px;
+  pointer-events: none; /* чтобы не ломал drag&drop */
 }
 
 .references-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 16px;
   overflow-y: auto;
 }
 
+/* Элемент изображения */
 .reference-item {
   width: 100px;
   height: 130px;
   object-fit: contain;   /* уменьшаем пропорционально, без обрезки */
-  background: transparent; /* фон прозрачный */
-  border-radius: 0;        /* убираем скругления, если не нужны */
-  box-shadow: none;        /* убираем тени */
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 /* Панель кнопок */
 .references-actions {
   display: flex;
-  gap: 32px;                /* расстояние между кнопками */
-  margin: 16px;             /* отступы вокруг панели */
+  gap: 32px;
+  margin: 16px;
 }
 
-/* Дефолтные кнопки */
 .references-btn {
-  flex: 1;                  /* равномерно заполняют ширину */
+  flex: 1;
   padding: 16px;
-  border-radius: 40px;       /* скругление 40px */
+  border-radius: 40px;
   font-family: var(--font-pfaze-family);
   font-size: var(--font-pfaze-size);
   font-weight: var(--font-pfaze-weight);

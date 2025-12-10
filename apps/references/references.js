@@ -49,3 +49,14 @@ window.initReferences = function(root) {
     });
   }
 };
+
+  // Кнопка "Выбрать"
+  selectBtn.addEventListener("click", () => {
+    alert("Функция выбора пока не реализована");
+  });
+
+  // Кнопка "Удалить все"
+  deleteBtn.addEventListener("click", () => {
+    grid.innerHTML = "";
+  });
+};

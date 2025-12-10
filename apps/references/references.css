@@ -44,8 +44,24 @@
   flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 16px;              /* расстояние между картинками */
-  overflow-y: auto;
+  gap: 16px;
+  overflow-y: auto;          /* включаем вертикальную прокрутку */
+  overflow-x: hidden;        /* горизонтальная прокрутка не нужна */
+  scrollbar-width: thin;     /* тонкий скролл для Firefox */
+}
+
+/* Для WebKit (Chrome, Safari, Edge) */
+.references-grid::-webkit-scrollbar {
+  width: 8px;                /* ширина полосы прокрутки */
+}
+
+.references-grid::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2); /* цвет бегунка */
+  border-radius: 4px;
+}
+
+.references-grid::-webkit-scrollbar-track {
+  background: transparent;   /* фон дорожки */
 }
 
 /* Элемент изображения */

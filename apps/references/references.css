@@ -64,21 +64,3 @@
   gap: 32px;
   margin: 16px;
 }
-
-.references-btn {
-  flex: 1;
-  padding: 16px;
-  border-radius: 40px;
-  font-family: var(--font-pfaze-family);
-  font-size: var(--font-pfaze-size);
-  font-weight: var(--font-pfaze-weight);
-  cursor: pointer;
-  border: none;
-  background: var(--color-white);
-  color: var(--color-text);
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-.references-btn:hover {
-  background: var(--color-gradient-accent);
-}

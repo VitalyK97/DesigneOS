@@ -7,7 +7,6 @@
 
 .references-content {
   flex: 1;
-  overflow-y: auto;
   background: var(--color-white);
   margin: 16px;
   border-radius: var(--radius-global);
@@ -16,6 +15,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* важно: чтобы сетка прокручивалась внутри */
 }
 
 .references-dropzone {
@@ -46,8 +46,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 16px;
-  overflow-y: auto;          /* включаем вертикальную прокрутку */
-  overflow-x: hidden;        /* горизонтальная прокрутка не нужна */
+  overflow-y: auto;          /* вертикальная прокрутка */
+  overflow-x: hidden;        /* горизонтальная не нужна */
   scrollbar-width: thin;     /* тонкий скролл для Firefox */
 }
 
@@ -80,5 +80,5 @@
   display: flex;
   gap: 32px;
   margin: 16px;
-  min-height: 64px; /* резервируем место */
+  min-height: 64px; /* резервируем место под кнопки */
 }

@@ -4,7 +4,6 @@
   height: 60vh;
   border-radius: var(--radius-global);
   background-color: var(--color-primary);
-  box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
   overflow: hidden;
 }
 
@@ -25,16 +24,8 @@
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
   transition: transform 0.3s ease-in-out;
 
-  /* градиентная обводка */
-  border: 2px solid transparent;
-  background-image:
-    linear-gradient(#fff, #fff), /* фон */
-    var(--color-gradient-accent); /* градиент для рамки */
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
 
   /* градиент для текста */
   background: var(--color-gradient-accent);

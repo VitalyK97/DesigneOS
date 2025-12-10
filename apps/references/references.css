@@ -28,6 +28,13 @@
   transition: background 0.3s ease-in-out;
 }
 
+.dropzone-icon {
+  display: block;
+  margin: 8px auto 12px auto; /* сверху 8px, снизу 12px для отступа от текста */
+  width: 32px;                /* размер иконки */
+  height: 32px;
+}
+
 .references-dropzone.dragover {
   background: rgba(0,0,0,0.05);
 }

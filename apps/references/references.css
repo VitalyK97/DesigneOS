@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100%;
   box-sizing: border-box;
+  position: relative; /* база для абсолютного позиционирования */
 }
 
 .references-content {
@@ -46,9 +47,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 16px;
-  overflow-y: auto;   /* вертикальная прокрутка */
+  overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-width: thin;
 }
 
 .references-grid::-webkit-scrollbar {
@@ -73,6 +73,10 @@
 
 /* Панель кнопок закреплена снизу */
 .references-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   gap: 32px;
   padding: 16px;

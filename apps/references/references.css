@@ -1,11 +1,12 @@
 .references-layout {
   display: flex;
+  flex-direction: column; /* чтобы кнопки были под контентом */
   height: 100%;
   box-sizing: border-box;
 }
 
 .references-content {
-  flex: 2;
+  flex: 1; /* занимает всё доступное пространство сверху */
   background: var(--color-white);
   margin: 16px;
   border-radius: var(--radius-global);
@@ -39,35 +40,29 @@
   overflow-y: auto;
 }
 
+/* Панель кнопок */
 .references-actions {
   display: flex;
   gap: 32px;                /* расстояние между кнопками */
-  margin-top: 16px;
+  margin: 16px;             /* отступы вокруг панели */
 }
 
+/* Дефолтные кнопки */
 .references-btn {
-  flex: 1;                  /* кнопки равномерно заполняют ширину */
+  flex: 1;                  /* равномерно заполняют ширину */
   padding: 16px;
-  border-radius: 12px;
+  border-radius: 40px;       /* скругление 40px */
   font-family: var(--font-pfaze-family);
   font-size: var(--font-pfaze-size);
   font-weight: var(--font-pfaze-weight);
   cursor: pointer;
   border: none;
+  background: var(--color-white);
+  color: var(--color-text);
+  box-shadow: var(--shadow-drop-light), var(--shadow-drop-dark);
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-/* Стили для кнопок */
-.select-btn {
-  background: var(--color-gradient-accent);
-  color: var(--color-white);
-}
-
-.delete-btn {
-  background: var(--color-primary);
-  color: var(--color-text);
-}
-
 .references-btn:hover {
-  opacity: 0.9;
+  background: var(--color-primary-light);
 }

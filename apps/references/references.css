@@ -7,6 +7,7 @@
 
 .references-content {
   flex: 1;
+  overflow-y: auto;
   background: var(--color-white);
   margin: 16px;
   border-radius: var(--radius-global);
@@ -79,4 +80,5 @@
   display: flex;
   gap: 32px;
   margin: 16px;
+  min-height: 64px; /* резервируем место */
 }

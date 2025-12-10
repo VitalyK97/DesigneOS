@@ -56,7 +56,9 @@
 /* Градиентный текст*/
 .app-window .settings-sidebar .window-menu-btn.accent span {
   display: inline-block;
-  background: var(--color-gradient-accent);
+  background-image: var(--color-gradient-accent); /* именно image */
+  background-size: 100%; /* чтобы градиент растянулся */
+  background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

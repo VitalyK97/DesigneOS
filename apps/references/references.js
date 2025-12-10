@@ -29,7 +29,16 @@ window.initReferences = function(root) {
     handleFiles(input.files);
   });
 
+  // Добавление картинок
   function handleFiles(files) {
+    if (files.length > 0) {
+      // скрываем иконку и текст
+      const icon = dropzone.querySelector(".dropzone-icon");
+      const text = dropzone.querySelector("p");
+      if (icon) icon.style.display = "none";
+      if (text) text.style.display = "none";
+    }
+
     [...files].forEach(file => {
       if (!file.type.startsWith("image/")) return;
       const reader = new FileReader();
@@ -51,5 +60,10 @@ window.initReferences = function(root) {
   // Кнопка "Удалить все"
   deleteBtn.addEventListener("click", () => {
     grid.innerHTML = "";
+    // возвращаем иконку и текст
+    const icon = dropzone.querySelector(".dropzone-icon");
+    const text = dropzone.querySelector("p");
+    if (icon) icon.style.display = "block";
+    if (text) text.style.display = "block";
   });
 };

@@ -38,3 +38,36 @@
   gap: 16px;
   overflow-y: auto;
 }
+
+.references-actions {
+  display: flex;
+  gap: 32px;                /* расстояние между кнопками */
+  margin-top: 16px;
+}
+
+.references-btn {
+  flex: 1;                  /* кнопки равномерно заполняют ширину */
+  padding: 16px;
+  border-radius: 12px;
+  font-family: var(--font-pfaze-family);
+  font-size: var(--font-pfaze-size);
+  font-weight: var(--font-pfaze-weight);
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Стили для кнопок */
+.select-btn {
+  background: var(--color-gradient-accent);
+  color: var(--color-white);
+}
+
+.delete-btn {
+  background: var(--color-primary);
+  color: var(--color-text);
+}
+
+.references-btn:hover {
+  opacity: 0.9;
+}

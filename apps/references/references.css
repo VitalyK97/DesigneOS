@@ -3,7 +3,6 @@
   flex-direction: column;
   height: 100%;
   box-sizing: border-box;
-  position: relative; /* база для абсолютного позиционирования */
 }
 
 .references-content {
@@ -71,12 +70,8 @@
   box-shadow: none;
 }
 
-/* Панель кнопок закреплена снизу */
+/* Панель кнопок всегда видна снизу */
 .references-actions {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   gap: 32px;
   padding: 16px;

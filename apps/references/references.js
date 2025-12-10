@@ -3,8 +3,8 @@ window.initReferences = function(root) {
   const input = root.querySelector("#references-input");
   const grid = root.querySelector(".references-grid");
 
-  const selectBtn = root.parentElement.querySelector(".references-actions .window-menu-btn:first-child");
-  const deleteBtn = root.parentElement.querySelector(".references-actions .window-menu-btn:last-child");
+  const selectBtn = root.querySelector(".references-actions .window-btn:first-child");
+  const deleteBtn = root.querySelector(".references-actions .window-btn:last-child");
 
   if (!dropzone || !input || !grid) return;
 
